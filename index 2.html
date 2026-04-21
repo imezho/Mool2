@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>물리학Ⅱ 1학기 중간고사 해설</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=JetBrains+Mono:wght@400;600&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0e1a;
+    --bg-2:#111827;
+    --card:#141b2d;
+    --card-hover:#1a2340;
+    --line:#1f2a44;
+    --ink:#e8eaf0;
+    --muted:#8892a8;
+    --accent:#7dd3fc;
+    --accent-2:#a78bfa;
+    --glow:rgba(125,211,252,.15);
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--bg);color:var(--ink);font-family:'Noto Sans KR',-apple-system,sans-serif;-webkit-font-smoothing:antialiased;line-height:1.5}
+
+  body{
+    min-height:100vh;
+    background:
+      radial-gradient(ellipse at top left, rgba(125,211,252,.08), transparent 50%),
+      radial-gradient(ellipse at bottom right, rgba(167,139,250,.06), transparent 50%),
+      var(--bg);
+    padding:32px 20px 64px;
+  }
+
+  .wrap{max-width:960px;margin:0 auto}
+
+  /* header */
+  .hero{
+    text-align:center;
+    padding:24px 0 40px;
+    border-bottom:1px solid var(--line);
+    margin-bottom:40px;
+    position:relative;
+  }
+  .hero::before{
+    content:'';
+    position:absolute;
+    top:0;left:50%;
+    width:60px;height:2px;
+    background:linear-gradient(90deg,transparent,var(--accent),transparent);
+    transform:translateX(-50%);
+  }
+  .kicker{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    letter-spacing:.3em;
+    color:var(--accent);
+    text-transform:uppercase;
+    margin-bottom:16px;
+  }
+  h1{
+    font-family:'Nanum Myeongjo',serif;
+    font-weight:800;
+    font-size:clamp(28px,6vw,42px);
+    letter-spacing:-.02em;
+    line-height:1.2;
+    margin-bottom:12px;
+  }
+  h1 .highlight{
+    background:linear-gradient(120deg,var(--accent) 0%,var(--accent-2) 100%);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+  }
+  .sub{
+    color:var(--muted);
+    font-size:14px;
+    font-family:'JetBrains Mono',monospace;
+  }
+  .sub span{color:var(--ink);margin:0 4px}
+
+  /* info strip */
+  .info{
+    background:linear-gradient(135deg,rgba(125,211,252,.06),rgba(167,139,250,.04));
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:16px 20px;
+    margin-bottom:32px;
+    font-size:13px;
+    color:var(--muted);
+    line-height:1.7;
+  }
+  .info strong{color:var(--accent);font-weight:600}
+
+  /* grid */
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+    gap:14px;
+  }
+
+  /* card */
+  .card{
+    display:flex;
+    align-items:stretch;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:14px;
+    text-decoration:none;
+    color:inherit;
+    overflow:hidden;
+    transition:transform .2s ease, border-color .2s ease, background .2s ease;
+    position:relative;
+  }
+  .card:hover,.card:active{
+    background:var(--card-hover);
+    border-color:var(--accent);
+    transform:translateY(-2px);
+  }
+  .card::after{
+    content:'';
+    position:absolute;
+    inset:0;
+    border-radius:14px;
+    pointer-events:none;
+    box-shadow:0 0 0 0 var(--glow);
+    transition:box-shadow .2s ease;
+  }
+  .card:hover::after{box-shadow:0 0 32px 0 var(--glow)}
+
+  .num{
+    flex:0 0 72px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:'Nanum Myeongjo',serif;
+    font-weight:800;
+    font-size:36px;
+    background:linear-gradient(180deg,var(--bg-2),transparent);
+    border-right:1px solid var(--line);
+    color:var(--ink);
+    letter-spacing:-.03em;
+  }
+  .card:hover .num{color:var(--accent)}
+
+  .body{
+    flex:1;
+    padding:14px 16px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    gap:6px;
+    min-width:0;
+  }
+  .source{
+    font-size:13px;
+    color:var(--ink);
+    font-weight:500;
+    line-height:1.35;
+    word-break:keep-all;
+  }
+  .meta{
+    font-family:'JetBrains Mono',monospace;
+    font-size:10px;
+    letter-spacing:.08em;
+    color:var(--muted);
+    text-transform:uppercase;
+    display:flex;
+    align-items:center;
+    gap:6px;
+  }
+  .meta svg{width:11px;height:11px;fill:currentColor}
+
+  /* footer */
+  footer{
+    margin-top:56px;
+    padding-top:24px;
+    border-top:1px solid var(--line);
+    text-align:center;
+    color:var(--muted);
+    font-size:12px;
+    font-family:'JetBrains Mono',monospace;
+    letter-spacing:.05em;
+  }
+  footer .heart{color:var(--accent-2)}
+
+  /* mobile tweaks */
+  @media (max-width:480px){
+    body{padding:20px 14px 48px}
+    .grid{grid-template-columns:1fr;gap:10px}
+    .num{flex-basis:64px;font-size:32px}
+    .body{padding:12px 14px}
+    .source{font-size:13px}
+    h1{font-size:26px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="hero">
+    <div class="kicker">Physics II · Midterm</div>
+    <h1>물리학<span class="highlight">Ⅱ</span> 중간고사 해설</h1>
+    <div class="sub">1학기 · <span>19</span>문항 · 마더텅 해설 링크</div>
+  </header>
+
+  <div class="info">
+    각 카드를 <strong>탭</strong>하면 유튜브 앱에서 <strong>「마더텅 해설 검색 결과」</strong>로 바로 이동해.
+    대부분 첫 번째 영상이 마더텅 공식 해설이야.
+  </div>
+
+  <div class="grid" id="grid"></div>
+
+  <footer>
+    built for 내일 시험 · <span class="heart">✦</span> 화이팅
+  </footer>
+</div>
+
+<script>
+  // 문항 데이터: [학습지번호, 원출처]
+  const items = [
+    [1,  '2021년 4월 학평 1번'],
+    [2,  '2021년 4월 학평 2번'],
+    [3,  '2023학년도 6월 모평 2번'],
+    [4,  '2019년 4월 학평 10번'],
+    [5,  '2020년 4월 학평 8번'],
+    [6,  '2020년 10월 학평 6번'],
+    [7,  '2023년 10월 학평 7번'],
+    [8,  '2020년 4월 학평 3번'],
+    [9,  '2021년 4월 학평 4번'],
+    [10, '2020년 4월 학평 6번'],
+    [11, '2022학년도 9월 모평 6번'],
+    [12, '2020년 4월 학평 15번'],
+    [13, '2020년 4월 학평 4번'],
+    [14, '2016년 4월 학평 5번'],
+    [15, '2021년 4월 학평 12번'],
+    [16, '2023년 10월 학평 19번'],
+    [17, '2023학년도 6월 모평 5번'],
+    [18, '물Ⅰ 2019년 4월 학평 6번'],
+    [19, '물Ⅰ 2017학년도 수능 5번'],
+  ];
+
+  // 원출처를 유튜브 검색어로 변환
+  // 예: '2021년 4월 학평 1번' → '마더텅 물리학Ⅱ 2021년 4월 학평 1번'
+  // 물Ⅰ 문항은 물Ⅰ 그대로 사용
+  function buildQuery(source){
+    // 물Ⅰ 접두어가 있으면 과목명 부분을 '물리학Ⅰ'로
+    if(source.startsWith('물Ⅰ')){
+      const rest = source.replace(/^물Ⅰ\s*/,'');
+      return `마더텅 물리학Ⅰ ${rest}`;
+    }
+    return `마더텅 물리학Ⅱ ${source}`;
+  }
+
+  function buildUrl(q){
+    return 'https://www.youtube.com/results?search_query=' + encodeURIComponent(q);
+  }
+
+  const grid = document.getElementById('grid');
+  const youtubeIcon = '<svg viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.6 15.6V8.4L15.8 12l-6.2 3.6z"/></svg>';
+
+  items.forEach(([n, src])=>{
+    const q = buildQuery(src);
+    const url = buildUrl(q);
+    const a = document.createElement('a');
+    a.className = 'card';
+    a.href = url;
+    a.target = '_blank';
+    a.rel = 'noopener';
+    a.innerHTML = `
+      <div class="num">${n}</div>
+      <div class="body">
+        <div class="source">${src}</div>
+        <div class="meta">${youtubeIcon}<span>YouTube · 마더텅</span></div>
+      </div>
+    `;
+    grid.appendChild(a);
+  });
+</script>
+</body>
+</html>
